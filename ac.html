@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<title>AC Control Panel</title>
+<style>
+  body {
+    opacity: calc(200);
+    font-family: Arial, sans-serif;
+  }
+  .ac-control {
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #0511eb;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+  }
+  .ac-control:hover {
+    box-shadow: 0 12px 16px 0 rgba(3, 95, 244, 0.989);
+  }
+  button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  input[type="number"] {
+    margin: 10px 0;
+    padding: 10px;
+    width: calc(100% - 22px);
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-md">          
+        <a class="navbar-brand" href="#">HomeSystem</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active hamara" aria-current="page" href="index.html">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hamara" href="fan.html">FAN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hamara" href="bulb.html">BULB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hamara" href="led.html">LED</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link hamara" style="font-weight: bold; color: black;" href="ac.html">A.C</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>  
+
+<div class="ac-control" id="dOqGo0w" style="margin-top: 70px; padding: 20px;"> 
+  <h1>AC Control Panel</h1>
+  <button id="onhai" onclick="turnOn()" onclick="controlAC('on')">Turn On</button>
+  <button id="offhai" onclick="turnOff()" onclick="controlAC('off')">Turn Off</button>
+  <input type="number" id="tempInput" placeholder="Set Temperature (°C)" min="16" max="30">
+  <button class="settemp" onclick="setTemperature()">Set Temperature</button>
+</div>
+
+<script type="text/javascript">
+  function turnOn() {
+      document.getElementById('onhai').style.backgroundColor = 'green';
+      document.getElementById('offhai').style.backgroundColor = '';
+  }
+
+  function turnOff() {
+      document.getElementById('offhai').style.backgroundColor = 'red';
+      document.getElementById('onhai').style.backgroundColor = '';
+  }
+</script>
+
+<script>
+const API_ENDPOINT = 'https://kodessphere-api.vercel.app';
+
+function controlAC(state) {
+  console.log(`Turning AC ${state}`);
+  fetch(API_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Team-ID': 'dOqGo0w' 
+    },
+    body: JSON.stringify({ command: 'power', state: state })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('AC Power Response:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+function setTemperature() {
+  const temperature = document.getElementById('tempInput').value;
+  console.log(`Setting temperature to ${temperature}°C`);
+  fetch(API_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Team-ID': 'dOqGo0w' 
+    },
+    body: JSON.stringify({ command: 'temperature', value: temperature })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Temperature Set Response:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

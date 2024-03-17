@@ -30,3 +30,5 @@ function updateFanSpeed() {
         alert("Error updating fan speed!");
     });
 }
+
+

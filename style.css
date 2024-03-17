@@ -1,8 +1,22 @@
+
 .navbar{
-    background-color: rgba(207, 228, 241, 0.329);
+    background-color: rgb(177, 188, 244);
     border-radius: 10px;
-    
-    
+    height: 70px;
+    font-size: 19px;
+}
+
+.navbar-nav > li {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.hamara{
+    transition: transform 0.4s ease;
+}
+
+.hamara:hover{
+    transform:scale(1.2) ;
 }
 .my-element {
     width: 200px;
@@ -15,7 +29,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 45px;
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px 10px;
@@ -32,20 +46,56 @@
     border-bottom: 5px black solid;
     padding: 14px 14px;
   }
-  body{
-    background-color: #1c87c9;
-  }
+ 
+.fan-control{
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 50px;
+    border: 2px solid #0511eb;
+    text-align: center;
+    box-shadow: 0px 2px 107px -2px rgba(80,124,202,0.75);
+}
 
-.buttonhaiyeh:hover{
-    color: rgb(200, 189, 189);
+.ledbox{
+    max-width: 550px;
+    height: 370px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgb(2, 65, 236);
+    transition: box-shadow 0.3s;
+}
+
+.fanka{
+    font-size: larger;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+.buttonr:hover{
+    background-color: rgb(164, 55, 55);
+}
+
+.buttonb:hover{
+    background-color: #36349b;
+}
+
+.buttong:hover{
+    background-color: rgb(57, 148, 48);
 }
 
 .texthaiyeh{
     color: black;
 }
 
-.buttonkadiv a{
-    text-decoration: none;
+.sbut{
+    height: 50px;
+    width: 150px;
+    border-radius: 25px;
 }
 
 .gallery a{
@@ -56,3 +106,30 @@
     color: grey;
 }
 
+.photos{
+    border-radius: 15px;
+    box-shadow: 1px 0px 45px 0px rgba(101,158,212,0.75);
+}
+
+.photos:hover{
+    background-color: rgb(168, 242, 255);
+    transition-duration: 0.4s;
+}
+
+.sbut{
+    row-gap: 4px;
+}
+
+.fanstatus{
+    height: 100px;
+    width: 100px;
+}
+
+.settemp:active{
+    color: aqua;
+}
+
+.buttonled:active{
+    color:aqua;
+    transition: 0.1s;
+}

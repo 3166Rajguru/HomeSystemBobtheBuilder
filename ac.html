@@ -8,10 +8,6 @@
 <title>AC Control Panel</title>
 <style>
   body {
-    background-image: url(https://media.istockphoto.com/id/1203327078/vector/abstract-background-of-smooth-curves.jpg?s=612x612&w=0&k=20&c=ybD3C-N3ZUX9abrp4XHrpSRhwubH0DiZ1-ZuZLWTBnY=);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
     opacity: calc(200);
     font-family: Arial, sans-serif;
   }
@@ -19,9 +15,14 @@
     max-width: 300px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #0511eb;
-    border-radius: 5px;
+    border: 2px solid #0511eb;
+    border-radius: 50px;
     text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s;
+  }
+  .ac-control:hover {
+    box-shadow: 0 12px 16px 0 rgba(3, 95, 244, 0.989);
   }
   button {
     display: block;
@@ -29,17 +30,13 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    border-radius: 5px;
   }
   input[type="number"] {
     margin: 10px 0;
     padding: 10px;
     width: calc(100% - 22px);
   }
-  .navbar{
-    background-color: rgb(165, 191, 247);
-    border-radius: 10px;
-}
-
 </style>
 </head>
 <body>
@@ -52,35 +49,46 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active hamara" aria-current="page" href="index.html">Home</a>
+            <a class="nav-link active hamara" aria-current="page" href="index.html">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link hamara" href="fan.html">Fan</a>
+            <a class="nav-link hamara" href="fan.html">FAN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link hamara" href="bulb.html">Bulb</a>
+            <a class="nav-link hamara" href="bulb.html">BULB</a>
           </li>
           <li class="nav-item">
             <a class="nav-link hamara" href="led.html">LED</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link hamara" href="ac.html">A.C</a>
+            <a class="nav-link hamara" style="font-weight: bold; color: black;" href="ac.html">A.C</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>  
 
-<div class="ac-control" id="dOqGo0w">
+<div class="ac-control" id="dOqGo0w" style="margin-top: 70px; padding: 20px;"> 
   <h1>AC Control Panel</h1>
-  <button onclick="controlAC('on')">Turn On</button>
-  <button onclick="controlAC('off')">Turn Off</button>
+  <button id="onhai" onclick="turnOn()" onclick="controlAC('on')">Turn On</button>
+  <button id="offhai" onclick="turnOff()" onclick="controlAC('off')">Turn Off</button>
   <input type="number" id="tempInput" placeholder="Set Temperature (°C)" min="16" max="30">
-  <button onclick="setTemperature()">Set Temperature</button>
+  <button class="settemp" onclick="setTemperature()">Set Temperature</button>
 </div>
 
+<script type="text/javascript">
+  function turnOn() {
+      document.getElementById('onhai').style.backgroundColor = 'green';
+      document.getElementById('offhai').style.backgroundColor = '';
+  }
+
+  function turnOff() {
+      document.getElementById('offhai').style.backgroundColor = 'red';
+      document.getElementById('onhai').style.backgroundColor = '';
+  }
+</script>
+
 <script>
-// Replace with the actual API endpoint
 const API_ENDPOINT = 'https://kodessphere-api.vercel.app';
 
 function controlAC(state) {
@@ -89,7 +97,7 @@ function controlAC(state) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Team-ID': 'dOqGo0w' // Your team ID
+      'Team-ID': 'dOqGo0w' 
     },
     body: JSON.stringify({ command: 'power', state: state })
   })
@@ -109,7 +117,7 @@ function setTemperature() {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Team-ID': 'dOqGo0w' // Your team ID
+      'Team-ID': 'dOqGo0w' 
     },
     body: JSON.stringify({ command: 'temperature', value: temperature })
   })
@@ -121,6 +129,7 @@ function setTemperature() {
     console.error('Error:', error);
   });
 }
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
